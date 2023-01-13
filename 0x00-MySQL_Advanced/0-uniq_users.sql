@@ -4,8 +4,8 @@
 -- email, string (255 characters), never null and unique
 -- name, string (255 characters
 
-CREATE TABLE if NOT EXISTS  users (
-	id int NOT NULL AUTO_INCREAMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS  users (
+	id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	email VARCHAR(255) NOT NULL UNIQUE,
 	name VARCHAR(255)
 );
