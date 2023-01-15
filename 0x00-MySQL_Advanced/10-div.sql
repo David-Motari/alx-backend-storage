@@ -11,7 +11,7 @@ BEGIN
     IF b = 0 THEN
         SET outcome = 0;
     ELSE
-        outcome = a / b;
+        SET outcome = a / b;
     END IF;
     RETURN outcome;
 END;
