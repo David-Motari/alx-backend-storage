@@ -4,15 +4,15 @@
 DELIMITER //
 
 DROP FUNCTION IF EXISTS SafeDiv;
-CREATE FUNCTION SafeDiv(a int, b int)
+CREATE FUNCTION SafeDiv (a INT, b INT)
 RETURNS FLOAT
 BEGIN
-DECLARE outcome FLOAT
-IF b = 0 THEN
-    SET outcome = 0;
-ELSE
-    outcome = a / b;
-END IF;
-RETURN outcome;
+    DECLARE outcome FLOAT;
+    IF b = 0 THEN
+        SET outcome = 0;
+    ELSE
+        outcome = a / b;
+    END IF;
+    RETURN outcome;
 END;
 //
