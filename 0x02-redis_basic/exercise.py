@@ -70,3 +70,33 @@ class Cache:
         self._redis.set(ky, data)
 
         return ky
+
+    def get(
+        self, key: str, fn: Optional[Callable] = None
+    ) -> Union[str, bytes, int, float]:
+        """
+        converts the data back to the desired format
+        """
+        val = self._redis.get(key)
+        if fn:
+            val = fn(val)
+
+        return val
+
+    def get_str(self, key: str) -> str:
+        """
+        converts the value from binary to string format
+        """
+        val = self._redis.get(key)
+        return val.decode("utf-8")
+
+    def get_int(self, key: str) -> int:
+        """
+        converts the value from binary toint format
+        """
+        val = self._redis.get(key)
+        try:
+            val = int(val.decode("utf-8"))
+        except Exception:
+            val = 0
+        return val
