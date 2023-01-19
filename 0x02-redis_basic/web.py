@@ -4,6 +4,7 @@ web
 """
 import redis
 import requests
+
 rdis = redis.Redis()
 num = 0
 
@@ -20,5 +21,6 @@ def get_page(url: str) -> str:
 
     return reqst.text
 
+
 if __name__ == "__main__":
-    get_page('http://slowwly.robertomurray.co.uk')
+    get_page("http://slowwly.robertomurray.co.uk")
