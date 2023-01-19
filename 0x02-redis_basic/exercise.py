@@ -56,10 +56,11 @@ def replay(func: Callable):
     num = redis.get(func_name).decode("utf-8")
 
     print("{} was called {} times:".format(func_name, num))
+
     insList = redis.lrange(func_name + ":inputs", 0, -1)
     outsList = redis.lrange(func_name + ":outputs", 0, -1)
-    redis_zipped = list(zip(insList, outsList))
-    for att, dt in redis_zipped:
+
+    for att, dt in zip(insList, outsList):
         attr, data = att.decode("utf-8"), dt.decode("utf-8")
         print("{}(*{}) -> {}".format(func_name, attr, data))
 
