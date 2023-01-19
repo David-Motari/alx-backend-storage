@@ -14,10 +14,10 @@ def get_page(url: str) -> str:
     track how many times a particular URL was accessed in the key "count:{url}"
     and cache the result with an expiration time of 10 seconds.
     """
-    rdis.set("cached:{}".format(url), num)
+    rdis.set(f"cached:{url}", num)
     reqst = requests.get(url)
-    rdis.incr("num:{}".format(url))
-    rdis.setex("cached:{}".format(url), 10, r.get("cached:{}".format(url)))
+    rdis.incr(f"num:{url}")
+    rdis.setex(f"cached:{url}", 10, r.get(f"cached:{url}"))
 
     return reqst.text
 
