@@ -10,16 +10,16 @@ from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
-    """ 
+    """
     Decortator for counting how many times a function
-    has been called 
+    has been called
     """
 
     key = method.__qualname__
 
     @wraps(method)
     def wrapper(self, *args, **kwargs):
-        """ Wrapper for decorator functionality """
+        """Wrapper for decorator functionality"""
         self._redis.incr(key)
         return method(self, *args, **kwargs)
 
@@ -27,7 +27,7 @@ def count_calls(method: Callable) -> Callable:
 
 
 def call_history(method: Callable) -> Callable:
-    """ 
+    """
     decorator function to store history
     """
 
@@ -45,6 +45,7 @@ def call_history(method: Callable) -> Callable:
         return output
 
     return wrapper
+
 
 class Cache:
     """
